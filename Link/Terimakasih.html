@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terima Kasih - Dapur Mami Stevi</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../CSS/style.css">
+
+
+</head>
+<body class="text-gray-800 relative bg-white">
+
+    <!-- HEADER -->
+    <header class="bg-pink-500 text-white p-5 shadow-md relative z-20">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center gap-3">
+                <img src="../assets/Logo Dapur Mami Stevi.jpeg" class="w-20 h-20 rounded-full object-cover shadow-md" />
+                Dapur Mami Stevi
+            </h1>
+            <nav class="space-x-6 text-lg relative">
+                <a href="../index.html" class="hover:text-yellow-300 font-semibold">Menu</a>
+                <a href="Lokasi.html" class="hover:text-yellow-300">Lokasi</a>
+                <a href="Tentang.html" class="hover:text-yellow-300">Tentang</a>
+                <a href="Kontak.html" class="hover:text-yellow-300">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto p-6 mt-6 flex flex-col items-center justify-center text-center min-h-[60vh]">
+
+        <!-- GAMBAR STEVI -->
+        <div class="flex justify-center mb-6">
+            <img src="../Assets/stevi 4.png"
+                 alt="Mami Stevi Menunjuk Lokasi"
+                 class="w-64 drop-shadow-2xl mix-blend-multiply animate-float"
+                 style="filter: brightness(1.05) contrast(1.1); border-radius: 1rem;">
+        </div>
+
+        <!-- PAYMENT BOX -->
+        <div class="payment-box">
+            <h2 class="text-3xl font-bold text-pink-600 mb-4">Terima Kasih!</h2>
+
+            <p class="text-xl text-gray-700 mb-4">
+                Terimakasih telah membayar pesanan Anda.<br>
+                Semoga suka dan puas dengan layanan kami 🍽️
+            </p>
+
+            <p class="text-xl font-bold text-pink-500 mb-2" id="totalPayment">
+                Total Pembayaran: Rp 0
+            </p>
+
+            <p class="text-lg text-gray-700" id="paymentMethod">
+                Metode Pembayaran: -
+            </p>
+        </div>
+
+    </main>
+
+    <!-- AUDIO -->
+    <div class="container mx-auto mt-5 text-center">
+        <p class="font-semibold mb-2">🎵 Lagu Tema Dapur Mami Stevi</p>
+        <audio controls autoplay loop class="mx-auto">
+            <source src="../assets/hearts2hearts.m4a" type="audio/mpeg" />
+        </audio>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-pink-500 text-white text-center p-4 mt-6">
+        <p>&copy; 2025 Dapur Mami Stevi</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="../JS/Terimakasih.js"></script>
+
+</body>
+</html>
