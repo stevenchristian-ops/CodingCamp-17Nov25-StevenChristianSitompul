@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   };
 
-  /* SUBMIT ORDER */
+  /* SUBMIT ORDER (FIXED PATH ../Assets/...) */
   window.submitOrder = function(key,type) {
     const item = type === "food" ? menuFood[key] : menuDrink[key];
     const qty = parseInt(document.getElementById("qtyInput").value);
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: "/" + item.img.replace(/\s/g,"%20") // path aman untuk GitHub Pages
+      img: "../" + item.img   // <-- FIX DI SINI
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(orders.length===0){ alert("Pesanan masih kosong!"); return; }
     const total = orders.reduce((sum,o)=>sum+o.harga*o.qty,0);
     localStorage.setItem("orderData", JSON.stringify({ items: orders, total }));
-    localStorage.removeItem("orders"); // hapus temp orders
+    localStorage.removeItem("orders");
     window.location.href = "./Link/Pembayaran.html";
   }
 
