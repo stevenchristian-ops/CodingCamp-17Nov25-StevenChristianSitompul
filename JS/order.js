@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: "/" + item.img.replace(/\s/g,"%20") // path aman untuk GitHub Pages
+      img: ".." + item.img.replace(/\s/g,"%20") // path aman untuk GitHub Pages
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
