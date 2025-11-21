@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: item.img // pastikan path sesuai root repo
+      img: "/" + item.img // pastikan path sesuai root repo
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
