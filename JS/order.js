@@ -28,18 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
            DATA MENU
   ======================================*/
   const menuFood = {
-    kwetiaw: { img:"assets/kwetiaw goreng medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
-    teri: { img:"assets/kwetiaw goreng medan teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
-    seafood: { img:"assets/kwetiaw goreng medan seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
-    teriyaki: { img:"assets/rice bowl teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
-    katsu: { img:"assets/rice bowl chicken katsu kari.jfif", harga:29000, nama:"Rice Bowl Katsu Kari" },
-    nasigoreng: { img:"assets/rice bowl nasi goreng.jfif", harga:25000, nama:"Rice Bowl Nasi Goreng" }
+    kwetiaw: { img:"Assets/kwetiaw goreng medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
+    teri: { img:"Assets/kwetiaw goreng medan teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
+    seafood: { img:"Assets/kwetiaw goreng medan seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
+    teriyaki: { img:"Assets/rice bowl teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
+    katsu: { img:"Assets/rice bowl chicken katsu kari.jfif", harga:29000, nama:"Rice Bowl Katsu Kari" },
+    nasigoreng: { img:"Assets/rice bowl nasi goreng.jfif", harga:25000, nama:"Rice Bowl Nasi Goreng" }
   };
 
   const menuDrink = {
-    esteh: { img:"assets/es teh.jfif", harga:5000, nama:"Es Teh Manis" },
-    americano: { img:"assets/es kopi americano.jpeg", harga:12000, nama:"Es Kopi Americano" },
-    kopisusu: { img:"assets/es kopi susu.jfif", harga:15000, nama:"Kopi Susu" }
+    esteh: { img:"Assets/es teh.jfif", harga:5000, nama:"Es Teh Manis" },
+    americano: { img:"Assets/es kopi americano.jpeg", harga:12000, nama:"Es Kopi Americano" },
+    kopisusu: { img:"Assets/es kopi susu.jfif", harga:15000, nama:"Kopi Susu" }
   };
 
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
       total
     }));
 
-    window.location.href = "../Link/Pembayaran.html";
+    window.location.href = "Link/Pembayaran.html";
   }
 
 });
