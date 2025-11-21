@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Object.keys(data).forEach((key) => {
       const item = data[key];
-
       menuDisplay.innerHTML += `
         <div onclick="selectItem('${key}', '${type}')" 
           class="cursor-pointer bg-white p-4 rounded-2xl shadow mb-4 border hover:bg-pink-50">
@@ -109,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: item.img
+      img: item.img // pastikan path sesuai root repo
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -165,12 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const total = orders.reduce((sum, o) => sum + o.harga * o.qty, 0);
 
+    // Simpan orderData lengkap
     localStorage.setItem("orderData", JSON.stringify({
       items: orders,
       total
     }));
 
-    window.location.href = "Link/Pembayaran.html";
+    // Hapus orders lama supaya tidak double
+    localStorage.removeItem("orders");
+
+    // Redirect ke Pembayaran
+    window.location.href = "./Link/Pembayaran.html";
   }
 
 });
