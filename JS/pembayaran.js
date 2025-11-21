@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   html+=`</ul><p class="text-xl font-bold mt-3">Total: Rp ${orderData.total.toLocaleString()}</p>`;
   orderResult.innerHTML=html;
 
-  // submit pembayaran
   paymentForm.addEventListener("submit",(e)=>{
     e.preventDefault();
     const metode=document.querySelector('input[name="pembayaran"]:checked');
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
       metode: metode.value
     }));
 
-    // redirect ke terimakasih
     window.location.href = "./Terimakasih.html";
   });
 });
