@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   orderData.items.forEach(item => {
     html += `
       <li class="mb-4 flex gap-4 bg-pink-50 p-3 rounded-xl shadow">
-        <img src="../${item.img}" class="w-20 h-20 rounded-lg border border-pink-200 object-cover">
+        <img src="${item.img}" class="w-20 h-20 rounded-lg border border-pink-200 object-cover">
         <div>
           <p class="font-bold">${item.nama}</p>
           <p>Qty: ${item.qty}</p>
