@@ -23,18 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* DATA MENU */
   const menuFood = {
-    kwetiaw: { img:"Assets/kwetiaw_goreng_medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
-    teri: { img:"Assets/kwetiaw_goreng_medan_teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
-    seafood: { img:"Assets/kwetiaw_goreng_medan_seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
-    teriyaki: { img:"Assets/rice_bowl_teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
-    katsu: { img:"Assets/rice_bowl_chicken_katsu_kari.jfif", harga:29000, nama:"Rice Bowl Katsu Kari" },
-    nasigoreng: { img:"Assets/rice_bowl_nasi_goreng.jfif", harga:25000, nama:"Rice Bowl Nasi Goreng" }
+    kwetiaw: { img:"../Assets/kwetiaw_goreng_medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
+    teri: { img:"../Assets/kwetiaw_goreng_medan_teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
+    seafood: { img:"../Assets/kwetiaw_goreng_medan_seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
+    teriyaki: { img:"../Assets/rice_bowl_teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
+    katsu: { img:"../Assets/rice_bowl_chicken_katsu_kari.jfif", harga:29000, nama:"Rice Bowl Katsu Kari" },
+    nasigoreng: { img:"../Assets/rice_bowl_nasi_goreng.jfif", harga:25000, nama:"Rice Bowl Nasi Goreng" }
   };
 
   const menuDrink = {
-    esteh: { img:"Assets/es_teh.jfif", harga:5000, nama:"Es Teh Manis" },
-    americano: { img:"Assets/es_kopi_americano.jpeg", harga:12000, nama:"Es Kopi Americano" },
-    kopisusu: { img:"Assets/es_kopi_susu.jfif", harga:15000, nama:"Kopi Susu" }
+    esteh: { img:"../Assets/es_teh.jfif", harga:5000, nama:"Es Teh Manis" },
+    americano: { img:"../Assets/es_kopi_americano.jpeg", harga:12000, nama:"Es Kopi Americano" },
+    kopisusu: { img:"../Assets/es_kopi_susu.jfif", harga:15000, nama:"Kopi Susu" }
   };
 
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: "../" + item.img.replace(/\s/g,"%20") // path aman untuk GitHub Pages
+      img: ".." + item.img.replace(/\s/g,"%20") // path aman untuk GitHub Pages
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
