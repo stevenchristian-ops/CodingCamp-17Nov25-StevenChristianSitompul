@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
            DATA MENU
   ======================================*/
   const menuFood = {
-    kwetiaw: { img:"../Assets/kwetiaw goreng medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
+    kwetiaw: { img:"Assets/kwetiaw goreng medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
     teri: { img:"../Assets/kwetiaw goreng medan teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
     seafood: { img:"../Assets/kwetiaw goreng medan seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
     teriyaki: { img:"../Assets/rice bowl teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
       total
     }));
 
-    window.location.href = "../Link/Pembayaran.html";
+    window.location.href = "Link/Pembayaran.html";
   }
 
 });
