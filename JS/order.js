@@ -23,18 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* DATA MENU */
   const menuFood = {
-    kwetiaw: { img:"Assets/kwetiaw_goreng_medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
-    teri: { img:"Assets/kwetiaw_goreng_medan_teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
-    seafood: { img:"Assets/kwetiaw_goreng_medan_seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
-    teriyaki: { img:"Assets/rice_bowl_teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
-    katsu: { img:"Assets/rice_bowl_chicken_katsu_kari.jfif", harga:29000, nama:"Rice Bowl Katsu Kari" },
-    nasigoreng: { img:"Assets/rice_bowl_nasi_goreng.jfif", harga:25000, nama:"Rice Bowl Nasi Goreng" }
+    kwetiaw: { img:"/Assets/kwetiaw_goreng_medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
+    teri: { img:"/Assets/kwetiaw_goreng_medan_teri.jpg", harga:30000, nama:"Kwetiaw Teri Medan" },
+    seafood: { img:"/Assets/kwetiaw_goreng_medan_seafood.jfif", harga:32000, nama:"Kwetiaw Seafood" },
+    teriyaki: { img:"/Assets/rice_bowl_teriyaki.jfif", harga:27000, nama:"Rice Bowl Teriyaki" },
+    katsu: { img:"/Assets/rice_bowl_chicken_katsu_kari.jfif", harga:29000, nama:"Rice Bowl Katsu Kari" },
+    nasigoreng: { img:"/Assets/rice_bowl_nasi_goreng.jfif", harga:25000, nama:"Rice Bowl Nasi Goreng" }
   };
 
   const menuDrink = {
-    esteh: { img:"Assets/es_teh.jfif", harga:5000, nama:"Es Teh Manis" },
-    americano: { img:"Assets/es_kopi_americano.jpeg", harga:12000, nama:"Es Kopi Americano" },
-    kopisusu: { img:"Assets/es_kopi_susu.jfif", harga:15000, nama:"Kopi Susu" }
+    esteh: { img:"/Assets/es_teh.jfif", harga:5000, nama:"Es Teh Manis" },
+    americano: { img:"/Assets/es_kopi_americano.jpeg", harga:12000, nama:"Es Kopi Americano" },
+    kopisusu: { img:"/Assets/es_kopi_susu.jfif", harga:15000, nama:"Kopi Susu" }
   };
 
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.showCategory = function(type) {
     menuDisplay.innerHTML = "";
     const data = type === "food" ? menuFood : menuDrink;
+
     Object.keys(data).forEach(key => {
       const item = data[key];
       menuDisplay.innerHTML += `
@@ -72,7 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <label class="font-semibold mt-4 block">Request Konsumen:</label>
       <input id="requestInput" class="border rounded-xl p-2 w-full">
       <button onclick="submitOrder('${key}','${type}')"
-        class="bg-pink-500 text-white px-6 py-2 rounded-xl font-bold shadow mt-4">Tambah ke Order</button>
+        class="bg-pink-500 text-white px-6 py-2 rounded-xl font-bold shadow mt-4">
+        Tambah ke Order
+      </button>
     `;
   };
 
@@ -87,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: "../" + item.img.replace(/\s/g,"%20") // path aman untuk GitHub Pages
+      img: item.img // FIX: langsung simpan path absolut
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -99,19 +102,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateOrderList() {
     orderList.innerHTML = "";
     let total = 0;
+
     orders.forEach((o,i)=>{
-      total += o.harga*o.qty;
+      total += o.harga * o.qty;
       orderList.innerHTML += `
         <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow border border-pink-200">
           <div>
             <p class="font-bold">${o.nama}</p>
-            ${o.request?`<p class="italic text-gray-500">Request: ${o.request}</p>`:""}
+            ${o.request ? `<p class="italic text-gray-500">Request: ${o.request}</p>`:""}
             <p>Qty: ${o.qty}</p>
-            <p>Rp ${(o.harga*o.qty).toLocaleString()}</p>
+            <p>Rp ${(o.harga * o.qty).toLocaleString()}</p>
           </div>
           <button onclick="removeOrder(${i})" class="text-red-500 text-xl font-bold">×</button>
         </div>`;
     });
+
     totalHarga.textContent = total.toLocaleString();
   }
 
@@ -120,15 +125,25 @@ document.addEventListener("DOMContentLoaded", () => {
     orders.splice(i,1);
     localStorage.setItem("orders", JSON.stringify(orders));
     updateOrderList();
-  }
+  };
 
   /* CHECKOUT */
   window.checkout = function() {
-    if(orders.length===0){ alert("Pesanan masih kosong!"); return; }
-    const total = orders.reduce((sum,o)=>sum+o.harga*o.qty,0);
-    localStorage.setItem("orderData", JSON.stringify({ items: orders, total }));
-    localStorage.removeItem("orders"); // hapus temp orders
+    if (orders.length === 0) {
+      alert("Pesanan masih kosong!");
+      return;
+    }
+
+    const total = orders.reduce((sum,o)=>sum + o.harga * o.qty, 0);
+
+    localStorage.setItem("orderData", JSON.stringify({
+      items: orders,
+      total
+    }));
+
+    localStorage.removeItem("orders");
+
     window.location.href = "./Link/Pembayaran.html";
-  }
+  };
 
 });
