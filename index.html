@@ -11,12 +11,8 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" href="CSS/style.css">
 
-
 </head>
 <body class="text-gray-800 relative bg-white">
-
-<!-- SPARKLE -->
-<div id="sparkleContainer"></div>
 
 <!-- HEADER -->
 <header class="bg-pink-500 text-white p-5 shadow-md relative z-20">
@@ -26,16 +22,18 @@
       Dapur Mami Stevi
     </h1>
 
-    <!-- NAV FIXED DROPDOWN WRAPPER -->
+    <!-- NAVIGATION -->
     <nav class="space-x-6 text-lg flex items-center">
-      <!-- WRAPPER MENU BUTTON -->
-      <div class="relative inline-block">
+
+      <div class="relative">
         <a id="btnMenu" class="hover:text-yellow-300 cursor-pointer font-semibold">
           Menu
         </a>
-        <!-- DROPDOWN MENU -->
-        <div id="dropdownMenu"
-             class="dropdown hidden absolute bg-white shadow-xl rounded-xl p-4 z-50 w-56 border border-gray-200">
+
+        <div 
+          id="dropdownMenu"
+          class="hidden absolute bg-white shadow-xl rounded-xl p-4 z-50 w-56 border border-gray-200"
+        >
           <h3 class="font-semibold text-lg mb-2 cursor-pointer" onclick="showCategory('food')">🍽️ Menu Makanan</h3>
           <h3 class="font-semibold text-lg mt-4 mb-2 cursor-pointer" onclick="showCategory('drink')">🥤 Menu Minuman</h3>
         </div>
@@ -44,6 +42,7 @@
       <a href="Link/Lokasi.html" class="hover:text-yellow-300">Lokasi</a>
       <a href="Link/Tentang.html" class="hover:text-yellow-300">Tentang</a>
       <a href="Link/Kontak.html" class="hover:text-yellow-300">Kontak</a>
+
     </nav>
   </div>
 </header>
@@ -53,47 +52,55 @@
 
   <div class="flex flex-col md:flex-row gap-6">
 
-<!-- GAMBAR STEVI DI SEBELAH KIRI, TRANSPARAN -->
-<div class="flex-shrink-0 flex justify-start mb-6 md:mb-0">
-    <img src="Assets/stevi 3.png" 
-         alt="Mami Stevi Menunjuk Lokasi"
-         class="w-64 drop-shadow-2xl mix-blend-multiply animate-float stevi-transparent"
-         style="filter: brightness(1.05) contrast(1.1); border-radius: 1rem;">
-</div>
+    <!-- FOTO -->
+    <div class="flex-shrink-0 flex justify-start mb-6 md:mb-0">
+      <img src="Assets/stevi 3.png"
+        alt="Mami Stevi"
+        class="w-64 drop-shadow-2xl mix-blend-multiply animate-float"
+        style="filter: brightness(1.05) contrast(1.1); border-radius: 1rem;">
+    </div>
 
-
-    <!-- KONTEN -->
+    <!-- MENU & ORDER -->
     <div class="flex-1">
-      <!-- MENU DISPLAY -->
       <div id="menuDisplay" class="w-full text-center mb-6"></div>
 
-      <!-- ORDER SECTION -->
       <section id="orderSection" class="order-box">
         <h2 class="order-title text-2xl font-bold mb-4">🧾 Pesanan Anda</h2>
         <div id="orderList" class="space-y-3 mb-4"></div>
         <p class="text-xl font-bold">Total: <span id="totalHarga">0</span></p>
-        <button onclick="checkout()" class="order-button mt-4">Submit Pesanan</button>
+        <button onclick="checkout()" class="bg-pink-500 text-white px-6 py-2 rounded-xl font-bold shadow mt-4">
+          Submit Pesanan
+        </button>
       </section>
-
     </div>
+
   </div>
 </main>
-
-<!-- AUDIO -->
-<div class="container mx-auto mt-5 text-center">
-  <p class="font-semibold mb-2">🎵 Lagu Tema Dapur Mami Stevi</p>
-  <audio controls autoplay loop class="mx-auto">
-    <source src="Assets/hearts2hearts.m4a" type="audio/mpeg" />
-  </audio>
-</div>
 
 <!-- FOOTER -->
 <footer class="bg-pink-500 text-white text-center p-4 mt-6">
   <p>&copy; 2025 Dapur Mami Stevi</p>
 </footer>
 
-<!-- JAVASCRIPT -->
+<!-- MAIN JS -->
 <script src="JS/order.js"></script>
+
+<!-- DROPDOWN MENU SCRIPT -->
+<script>
+  const btnMenu = document.getElementById("btnMenu");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+
+  btnMenu.addEventListener("click", () => {
+    dropdownMenu.classList.toggle("hidden");
+  });
+
+  // CLOSE DROPDOWN WHEN CLICK OUTSIDE
+  document.addEventListener("click", function(e) {
+    if (!btnMenu.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.classList.add("hidden");
+    }
+  });
+</script>
 
 </body>
 </html>
