@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateOrderList();
 
-  /* SHOW CATEGORY */
+  /* TAMPILKAN MENU */
   window.showCategory = function(type) {
     menuDisplay.innerHTML = "";
     const data = type === "food" ? menuFood : menuDrink;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  /* SELECT ITEM */
+  /* DETAIL ITEM */
   window.selectItem = function(key,type) {
     const item = type === "food" ? menuFood[key] : menuDrink[key];
 
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       harga: item.harga,
       qty,
       request,
-      img: "../" + item.img  // path untuk pembayaran.html
+      img: item.img // FIX — jangan pakai "../"
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Berhasil ditambahkan ke order!");
   };
 
-  /* UPDATE LIST */
+  /* UPDATE ORDER */
   function updateOrderList() {
     orderList.innerHTML = "";
     let total = 0;
@@ -100,15 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>Rp ${(o.harga * o.qty).toLocaleString()}</p>
           </div>
 
-          <button onclick="removeOrder(${i})"
-            class="text-red-500 text-xl font-bold">×</button>
+          <button onclick="removeOrder(${i})" class="text-red-500 text-xl font-bold">×</button>
         </div>`;
     });
 
     totalHarga.textContent = total.toLocaleString();
   }
 
-  /* REMOVE ITEM */
+  /* HAPUS ITEM */
   window.removeOrder = function(i) {
     orders.splice(i,1);
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -131,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.removeItem("orders");
 
-    window.location.href = "./Link/Pembayaran.html";
+    window.location.href = "Link/Pembayaran.html";
   };
 
 });
