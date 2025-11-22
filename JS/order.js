@@ -1,26 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* DROPDOWN MENU FIX */
-  const btnMenu = document.getElementById("btnMenu");
-  const dropdownMenu = document.getElementById("dropdownMenu");
-  if (btnMenu && dropdownMenu) {
-    dropdownMenu.style.position = "absolute";
-    dropdownMenu.style.top = "100%";
-    dropdownMenu.style.left = "0";
-    dropdownMenu.classList.add("hidden");
-
-    btnMenu.addEventListener("click", e => {
-      e.stopPropagation();
-      dropdownMenu.classList.toggle("hidden");
-    });
-
-    document.addEventListener("click", e => {
-      if (!dropdownMenu.contains(e.target) && !btnMenu.contains(e.target)) {
-        dropdownMenu.classList.add("hidden");
-      }
-    });
-  }
-
   /* DATA MENU */
   const menuFood = {
     kwetiaw: { img:"Assets/kwetiaw_goreng_medan.jfif", harga:28000, nama:"Kwetiaw Medan Original" },
@@ -45,10 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateOrderList();
 
-  /* TAMPILKAN KATEGORI */
+  /* SHOW CATEGORY */
   window.showCategory = function(type) {
     menuDisplay.innerHTML = "";
     const data = type === "food" ? menuFood : menuDrink;
+
     Object.keys(data).forEach(key => {
       const item = data[key];
       menuDisplay.innerHTML += `
@@ -60,16 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  /* PILIH ITEM */
+  /* SELECT ITEM */
   window.selectItem = function(key,type) {
     const item = type === "food" ? menuFood[key] : menuDrink[key];
+
     menuDisplay.innerHTML = `
       <h2 class="text-2xl font-bold text-pink-600 mb-4">${item.nama}</h2>
+
       <img src="${item.img}" class="w-60 mx-auto rounded-2xl shadow-xl border-4 border-pink-300 mb-5">
+
       <p class="text-xl font-semibold mb-3">Harga: Rp ${item.harga.toLocaleString()}</p>
 
       <label class="font-semibold">Qty:</label>
-      <input id="qtyInput" type="number" min="1" value="1" class="border rounded-xl p-2 w-20 text-center">
+      <input id="qtyInput" type="number" min="1" value="1"
+        class="border rounded-xl p-2 w-20 text-center">
 
       <label class="font-semibold mt-4 block">Request Konsumen:</label>
       <input id="requestInput" class="border rounded-xl p-2 w-full">
@@ -87,13 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const qty = parseInt(document.getElementById("qtyInput").value);
     const request = document.getElementById("requestInput").value;
 
-    // Tambahkan "../" agar path benar saat masuk ke Pembayaran.html
     orders.push({
       nama: item.nama,
       harga: item.harga,
       qty,
       request,
-      img: "../" + item.img
+      img: "../" + item.img  // path untuk pembayaran.html
     });
 
     localStorage.setItem("orders", JSON.stringify(orders));
@@ -101,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Berhasil ditambahkan ke order!");
   };
 
-  /* UPDATE ORDER LIST */
+  /* UPDATE LIST */
   function updateOrderList() {
     orderList.innerHTML = "";
     let total = 0;
@@ -109,21 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
     orders.forEach((o,i)=>{
       total += o.harga * o.qty;
       orderList.innerHTML += `
-        <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow border border-pink-200 mb-2">
+        <div class="flex justify-between items-center bg-white p-3 rounded-xl shadow border mb-2">
           <div>
             <p class="font-bold">${o.nama}</p>
             ${o.request ? `<p class="italic text-gray-500">Request: ${o.request}</p>` : ""}
             <p>Qty: ${o.qty}</p>
             <p>Rp ${(o.harga * o.qty).toLocaleString()}</p>
           </div>
-          <button onclick="removeOrder(${i})" class="text-red-500 text-xl font-bold">×</button>
+
+          <button onclick="removeOrder(${i})"
+            class="text-red-500 text-xl font-bold">×</button>
         </div>`;
     });
 
     totalHarga.textContent = total.toLocaleString();
   }
 
-  /* HAPUS ORDER */
+  /* REMOVE ITEM */
   window.removeOrder = function(i) {
     orders.splice(i,1);
     localStorage.setItem("orders", JSON.stringify(orders));
